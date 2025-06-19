@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/api_service.dart';
+import 'medicine_detail_screen.dart';
 
 class MedicinesScreen extends StatefulWidget {
   @override
@@ -28,6 +29,15 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
     });
   }
 
+  void navigateToDetail(int medicineId) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => MedicineDetailScreen(medicineId: medicineId),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +55,7 @@ class _MedicinesScreenState extends State<MedicinesScreen> {
                   subtitle: Text(medicine['description'] ?? ''),
                   trailing: Text('\$${medicine['price']}'),
                   onTap: () {
-                    // TODO: Implement medicine details or ordering
+                    navigateToDetail(medicine['id']);
                   },
                 );
               },
